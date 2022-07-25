@@ -18,6 +18,7 @@ class MainViewModel : ViewModel() {
         get() = _sharedFlow.asSharedFlow()
 
     init {
+        triggerFlow()
         viewModelScope.launch {
             repeat(60) {
                 _sharedFlow.emit(it)

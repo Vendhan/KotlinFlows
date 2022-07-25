@@ -10,7 +10,7 @@
         android:id="@+id/flowButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Trigger New Flow"
+        android:text="Collect Flow"
         android:layout_marginTop="64dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,9 +20,31 @@
         android:id="@+id/sharedFlowButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Trigger New Shared FLow"
+        android:text="Collect Shared FLow"
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/flowButton" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/newFlowButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Collect New FLow"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sharedFlowButton" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/newSharedFlowButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Collect New Shared FLow"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/newFlowButton" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
