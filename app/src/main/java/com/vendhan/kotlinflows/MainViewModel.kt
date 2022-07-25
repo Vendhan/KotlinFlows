@@ -1,47 +1,37 @@
 package com.vendhan.kotlinflows
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
 
-    private val _liveData = MutableLiveData<String>()
-    val liveData: LiveData<String>
-        get() = _liveData
-
-    private val _stateFlow = MutableStateFlow(value = "Hello World")
-    val stateFlow
-        get() = _stateFlow.asStateFlow()
-
-    private val _sharedFlow = MutableSharedFlow<String>()
+    private val _sharedFlow = MutableSharedFlow<Int>(
+        replay = 2
+    )
     val sharedFlow
         get() = _sharedFlow.asSharedFlow()
 
-    fun triggerLiveData() {
-        _liveData.value = "It's LiveData"
-    }
-
-    fun triggerFlow(): Flow<String> {
-        return flow {
-            repeat(5) {
-                emit("Emitting $it")
-                delay(1000)
+    init {
+        viewModelScope.launch {
+            repeat(60) {
+                _sharedFlow.emit(it)
+                delay(1000L)
             }
         }
     }
 
-    fun triggerStateFlow() {
-        _stateFlow.value = "It's StateFlow"
-    }
-
-    fun triggerSharedFlow() {
-        viewModelScope.launch {
-            _sharedFlow.emit("It's SharedFlow")
+    fun triggerFlow(): Flow<Int> {
+        return flow {
+            repeat(60) {
+                emit(it)
+                delay(1000L)
+            }
         }
     }
 }
