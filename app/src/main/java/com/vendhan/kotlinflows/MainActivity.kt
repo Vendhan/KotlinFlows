@@ -32,22 +32,15 @@ class MainActivity : AppCompatActivity() {
                     binding.flowText.text = it
                 }
             }
-            /*lifecycleScope.launchWhenStarted {
-                delay(2000)
-                mainViewModel.triggerFlow().collect {
-                    Log.d(TAG, "Flow 2: $it")
-                    binding.flowText.text = it
-                }
-            }*/
         }
 
         binding.stateFlowButton.setOnClickListener {
             mainViewModel.triggerStateFlow()
         }
 
-        /*binding.sharedFlowButton.setOnClickListener {
+        binding.sharedFlowButton.setOnClickListener {
             mainViewModel.triggerSharedFlow()
-        }*/
+        }
 
         subscribeToObservables()
     }
@@ -68,7 +61,7 @@ class MainActivity : AppCompatActivity() {
             mainViewModel.stateFlow.collect {
                 Log.d(TAG, "Stateflow: $it")
                 binding.stateFlowText.text = it
-                showSnackBar()
+                // showSnackBar()
             }
         }
 
@@ -76,13 +69,6 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launchWhenStarted {
             mainViewModel.sharedFlow.collect {
                 Log.d(TAG, "Sharedflow 1: $it")
-                binding.sharedFlowText.text = it
-                showSnackBar()
-            }
-        }
-        lifecycleScope.launchWhenStarted {
-            mainViewModel.sharedFlow.collect {
-                Log.d(TAG, "Sharedflow 2: $it")
                 binding.sharedFlowText.text = it
                 // showSnackBar()
             }
